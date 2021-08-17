@@ -1,0 +1,11 @@
+@import '../../styles.scss';
+
+.navbar {
+    background-color: $section-background;
+
+    .navbar-brand {
+        font-family: $logo-font;
+        color: $primary-color;
+    }
+}
+

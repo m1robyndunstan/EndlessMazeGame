@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MazeScreen } from '../MazeScreen';
+import { MazeState } from '../MazeState';
 
 @Component({
   selector: 'app-maze-main',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MazeMainComponent implements OnInit {
 
-  constructor() { }
+  currentGame: MazeState = {
+    currentScreen: MazeScreen.Intro
+  };
+
+  MazeScreen = MazeScreen;
+
+  constructor() {   }
 
   ngOnInit(): void {
   }

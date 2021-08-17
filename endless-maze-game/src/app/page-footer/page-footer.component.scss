@@ -1,0 +1,11 @@
+@import '../../styles.scss';
+
+.navbar {
+    background-color: $section-background;
+    color: $primary-color;
+
+    .navbar-brand a {
+        color: $primary-color;
+        margin-left: 0.5rem;
+    }
+}
