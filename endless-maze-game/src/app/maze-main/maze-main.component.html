@@ -1,1 +1,4 @@
-<app-maze-intro *ngIf="currentGame.currentScreen === MazeScreen.Intro"></app-maze-intro>
+<ng-container [ngSwitch]="currentGame.currentScreen">
+    <app-maze-intro *ngSwitchCase="MazeScreen.Intro"></app-maze-intro>
+    <app-maze-interface *ngSwitchCase="MazeScreen.Interface"></app-maze-interface>
+</ng-container>
