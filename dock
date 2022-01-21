@@ -1,0 +1,40 @@
+#! /bin/bash
+# In Windows, run with Git Bash
+
+# Use the correct path format for operating system
+if [ "`uname -a | grep -i kernel`" == "" ] ; then
+        echo "looks like a windows machine"
+        MOUNTDIR=`cd endless-maze-game ; pwd -W | sed "s,/,\\\\\\\\\\\\\\\\\\\\\,g"`
+else
+        echo "looks like a non windows machine"
+        MOUNTDIR=`cd endless-maze-game ; pwd`
+fi
+
+# Specified option is the first argument when the script is called
+case $1 in
+# Build the container from this git repo on the local computer
+build)
+    echo "building container"
+    docker build -f Dockerfile . -t m1robyndunstan/endless-maze:latest
+    ;;
+# Run the container linked to the code in this local git repo
+run)
+    echo "running container"
+    docker stop endless-maze
+    docker rm endless-maze
+    docker run -v  ${MOUNTDIR}:/app/endless-maze-game --name endless-maze  -p 8080:4200 -td m1robyndunstan/endless-maze:latest
+    ;;
+# Stop and remove previously used containers and images to avoid container name conflicts
+clean)
+    echo "cleaning up containers and images"
+    docker stop endless-maze
+    docker rm endless-maze
+    docker rmi m1robyndunstan/endless-maze:latest
+    ;;
+# List valid options
+*)
+    echo "build - build game container"
+    echo "run - run game container"
+    echo "clean - stop and remove game containers"
+    ;;
+esac
