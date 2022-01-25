@@ -18,6 +18,7 @@ export class MazeIntroComponent implements OnInit {
 
   enterMaze(): void {
     if (this.currentGame) {
+      this.currentGame.startMaze();
       this.currentGame.currentScreen = MazeScreen.Interface;
     }
   }
