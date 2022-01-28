@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MazeState } from '../MazeState';
+import { MazeDirection } from '../MazeDirection';
 
 @Component({
   selector: 'app-maze-interface',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MazeInterfaceComponent implements OnInit {
 
+  @Input() currentGame?: MazeState;
+
+  playerStartDir?: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    if (this.currentGame?.playerDirection) this.playerStartDir = MazeDirection[this.currentGame?.playerDirection];
   }
 
 }

@@ -1,5 +1,6 @@
 <ng-container [ngSwitch]="currentGame.currentScreen">
     <app-maze-intro *ngSwitchCase="MazeScreen.Intro"
         [currentGame]="currentGame"></app-maze-intro>
-    <app-maze-interface *ngSwitchCase="MazeScreen.Interface"></app-maze-interface>
+    <app-maze-interface *ngSwitchCase="MazeScreen.Interface"
+        [currentGame]="currentGame"></app-maze-interface>
 </ng-container>
