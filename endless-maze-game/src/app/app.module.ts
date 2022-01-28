@@ -7,6 +7,7 @@ import { PageFooterComponent } from './page-footer/page-footer.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { MazeIntroComponent } from './maze-intro/maze-intro.component';
 import { MazeInterfaceComponent } from './maze-interface/maze-interface.component';
+import { MazeImageComponent } from './maze-image/maze-image.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MazeInterfaceComponent } from './maze-interface/maze-interface.componen
     PageFooterComponent,
     PageHeaderComponent,
     MazeIntroComponent,
-    MazeInterfaceComponent
+    MazeInterfaceComponent,
+    MazeImageComponent
   ],
   imports: [
     BrowserModule
