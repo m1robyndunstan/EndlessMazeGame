@@ -15,9 +15,6 @@ export class MazeImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.imageLeftUrl = MazeImage.WallLeft;
-    this.imageCenterUrl = MazeImage.WallCenter;
-    this.imageRightUrl = MazeImage.WallRight;
   }
 
 }

@@ -26,14 +26,18 @@ class Point {
                 return new Point(-1, -1);
         }
     }
+
+    equals(otherPoint: Point) : boolean {
+        return this.x == otherPoint.x && this.y == otherPoint.y;
+    }
 }
 
 export class MazeState {
     currentScreen: MazeScreen;
     dimensions: number[];
-    maze: MazeBlock[][];
-    playerLocation: Point;
-    playerDirection: MazeDirection;
+    maze?: MazeBlock[][];
+    playerLocation?: Point;
+    playerDirection?: MazeDirection;
 
     defaultDimension: number = 5;
 
@@ -45,10 +49,7 @@ export class MazeState {
 
         this.currentScreen = MazeScreen.Intro;
 
-        this.maze = [];
         this.buildMaze(this.dimensions[0], this.dimensions[1]);
-        this.playerLocation = new Point(-1, -1);
-        this.playerDirection = MazeDirection.North;
     }
 
     private buildMaze(dimX: number, dimY: number) {
@@ -58,11 +59,11 @@ export class MazeState {
         let visit2: Point[] = [];
 
         function isVisited(p: Point) : boolean {
-            return visit1.some((v) => v.x == p.x && v.y == p.y);
+            return visit1.some((v) => v.equals(p));
         }
 
         function isVisitedTwice(p: Point) : boolean {
-            return visit2.some((v) => v.x == p.x && v.y == p.y);
+            return visit2.some((v) => v.equals(p));
         }
 
         function getUnvisitedDirections(p: Point) : MazeDirection[] {
@@ -132,14 +133,14 @@ export class MazeState {
                 block.flavorText = "The walls of the hedge maze are too high for you to see over. ";
                 block.paths.sort();
                 if (block.paths.length == 1) {
-                    block.flavorText += "There is a path to the " + block.paths[0].toString() + ". ";
+                    block.flavorText += "There is a path to the " + MazeDirection[block.paths[0]] + ". ";
                 }
                 else {
-                    block.flavorText += "There are paths to the " + block.paths[0].toString();
+                    block.flavorText += "There are paths to the " + MazeDirection[block.paths[0]];
                     for (let index = 0; index < block.paths.length - 2; index++) {
-                        block.flavorText += ", " + block.paths[index + 1].toString();
+                        block.flavorText += ", " + MazeDirection[block.paths[index + 1]];
                     }
-                    block.flavorText += " and " + block.paths[block.paths.length - 1].toString() + ". ";
+                    block.flavorText += " and " + MazeDirection[block.paths[block.paths.length - 1]] + ". ";
                 }
             });
         });
@@ -169,14 +170,17 @@ export class MazeState {
                 break;
         }
         exitBlock.specialDesc = MazeSpecial.Exit;
-        exitBlock.flavorText += "There is a wooden door in the hedge wall to the " + exitBlock.specialDir.toString(); + ". "
+        exitBlock.flavorText += "There is a wooden door in the hedge wall to the " + MazeDirection[exitBlock.specialDir] + ". "
     }
 
     startMaze(): void {
+        do {
         this.playerLocation = new Point(
             Math.floor(Math.random() * this.dimensions[0]),
             Math.floor(Math.random() * this.dimensions[1])
         );
+        } while (this.maze && this.maze[this.playerLocation.x][this.playerLocation.y].specialDesc == MazeSpecial.Exit);
+        
         this.playerDirection = Math.floor(Math.random() * 4) as MazeDirection;
         this.getCurrentBlock().specialDesc = MazeSpecial.Start;
         this.getCurrentBlock().flavorText += "You are still holding the book, but the pages are now blank. You close the book and proceed to explore your surroundings. "
@@ -184,19 +188,19 @@ export class MazeState {
 
     getFlavorText(): string {
         let flavorText = this.getCurrentBlock().flavorText;
-        flavorText += "You are facing " + MazeDirection[this.playerDirection] + ". ";
+        if (this.playerDirection) flavorText += "You are facing " + MazeDirection[this.playerDirection] + ". ";
         return flavorText;
     }
 
     // Navigation functions
     hasForwardPath(): boolean {
-        return this.getCurrentBlock().paths.includes(this.playerDirection);
+        return this.playerDirection ? this.getCurrentBlock().paths.includes(this.playerDirection) : false;
     }
     hasRightPath(): boolean {
-        return this.getCurrentBlock().paths.includes(((this.playerDirection + 1) % 4) as MazeDirection);
+        return this.playerDirection ? this.getCurrentBlock().paths.includes(((this.playerDirection + 1) % 4) as MazeDirection) : false;
     }
     hasLeftPath(): boolean {
-        return this.getCurrentBlock().paths.includes(((this.playerDirection + 3) % 4) as MazeDirection);
+        return this.playerDirection ? this.getCurrentBlock().paths.includes(((this.playerDirection + 3) % 4) as MazeDirection) : false;
     }
 
     // Special location functions
@@ -207,44 +211,50 @@ export class MazeState {
         return this.getCurrentBlock().specialDesc;
     }
     isSpecialForward(): boolean {
-        return this.isForward(this.playerDirection, this.getCurrentBlock().specialDir);
+        return this.playerDirection ? this.isForward(this.playerDirection, this.getCurrentBlock().specialDir) : false;
     }
     isSpecialRight(): boolean {
-        return this.isRight(this.playerDirection, this.getCurrentBlock().specialDir);
+        return this.playerDirection ? this.isRight(this.playerDirection, this.getCurrentBlock().specialDir) : false;;
     }
     isSpecialLeft(): boolean {
-        return this.isLeft(this.playerDirection, this.getCurrentBlock().specialDir);
+        return this.playerDirection ? this.isLeft(this.playerDirection, this.getCurrentBlock().specialDir) : false;
     }
 
     // Travel functions
     moveForward(): void {
-        switch (this.playerDirection) {
-            case MazeDirection.North:
-                this.playerLocation.y -= 1;
-                break;
-            case MazeDirection.East:
-                this.playerLocation.x += 1;
-                break;
-            case MazeDirection.South:
-                this.playerLocation.y += 1;
-                break;
-            case MazeDirection.West:
-                this.playerLocation.x -= 1;
-                break;
-            default:
-                break;
+        if (this.playerLocation) {
+            switch (this.playerDirection) {
+                case MazeDirection.North:
+                    this.playerLocation.y -= 1;
+                    break;
+                case MazeDirection.East:
+                    this.playerLocation.x += 1;
+                    break;
+                case MazeDirection.South:
+                    this.playerLocation.y += 1;
+                    break;
+                case MazeDirection.West:
+                    this.playerLocation.x -= 1;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     turnRight(): void {
-        this.playerDirection = ((this.playerDirection + 1) % 4) as MazeDirection;
+        if (this.playerDirection) {
+            this.playerDirection = ((this.playerDirection + 1) % 4) as MazeDirection;
+        }
     }
     turnLeft(): void {
-        this.playerDirection = ((this.playerDirection + 3) % 4) as MazeDirection;
+        if (this.playerDirection) {
+            this.playerDirection = ((this.playerDirection + 3) % 4) as MazeDirection;
+        }
     }
 
     // private functions
     private getCurrentBlock(): MazeBlock {
-        return this.maze[this.playerLocation.x][this.playerLocation.y];
+        return this.maze && this.playerLocation ? this.maze[this.playerLocation.x][this.playerLocation.y] : new MazeBlock();
     }
 
     private isForward(facingDirection: MazeDirection, queryDirection: MazeDirection) {

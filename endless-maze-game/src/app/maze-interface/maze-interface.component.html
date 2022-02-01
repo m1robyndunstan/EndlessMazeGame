@@ -1,6 +1,11 @@
-<app-maze-image></app-maze-image>
+<app-maze-image
+    [imageLeftUrl]="mazeLeftImage"
+    [imageCenterUrl]="mazeCenterImage"
+    [imageRightUrl]="mazeRightImage"
+    ></app-maze-image>
 <p>maze-interface works!</p>
 <div *ngIf="currentGame">
     <p>Maze dimensions are {{currentGame.dimensions[0]}} x {{currentGame.dimensions[1]}}</p>
-    <p>Starting point is ({{currentGame.playerLocation.x}}, {{currentGame.playerLocation.y}}) facing {{playerStartDir}}</p>
+    <p *ngIf="currentGame.playerLocation">Starting point is ({{currentGame.playerLocation.x}}, {{currentGame.playerLocation.y}}) facing {{playerStartDir}}</p>
+    <p>{{playerStartFlavor}}</p>
 </div>
