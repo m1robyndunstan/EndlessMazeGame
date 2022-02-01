@@ -3,9 +3,23 @@
     [imageCenterUrl]="mazeCenterImage"
     [imageRightUrl]="mazeRightImage"
     ></app-maze-image>
-<p>maze-interface works!</p>
+
 <div *ngIf="currentGame">
     <p>Maze dimensions are {{currentGame.dimensions[0]}} x {{currentGame.dimensions[1]}}</p>
     <p *ngIf="currentGame.playerLocation">Starting point is ({{currentGame.playerLocation.x}}, {{currentGame.playerLocation.y}}) facing {{playerStartDir}}</p>
     <p>{{playerStartFlavor}}</p>
+</div>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col'>
+            <button type='button' class='btn btn-primary'>Turn Left</button>
+        </div>
+        <div class='col-6'>
+            <button type='button' class='btn btn-primary'>Move Forward</button>
+        </div>
+        <div class='col'>
+            <button type='button' class='btn btn-primary'>Turn Right</button>
+        </div>
+    </div>
 </div>
