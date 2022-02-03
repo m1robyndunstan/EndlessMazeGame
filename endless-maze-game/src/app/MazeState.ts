@@ -130,18 +130,7 @@ export class MazeState {
         // Assign default flavor text
         this.maze.forEach(mazeRow => {
             mazeRow.forEach(block => {
-                block.flavorText = "The walls of the hedge maze are too high for you to see over. ";
-                block.paths.sort();
-                if (block.paths.length == 1) {
-                    block.flavorText += "There is a path to the " + MazeDirection[block.paths[0]] + ". ";
-                }
-                else {
-                    block.flavorText += "There are paths to the " + MazeDirection[block.paths[0]];
-                    for (let index = 0; index < block.paths.length - 2; index++) {
-                        block.flavorText += ", " + MazeDirection[block.paths[index + 1]];
-                    }
-                    block.flavorText += " and " + MazeDirection[block.paths[block.paths.length - 1]] + ". ";
-                }
+                this.buildDefaultFlavorText(block);
             });
         });
 
@@ -171,6 +160,21 @@ export class MazeState {
         }
         exitBlock.specialDesc = MazeSpecial.Exit;
         exitBlock.flavorText += "There is a wooden door in the hedge wall to the " + MazeDirection[exitBlock.specialDir] + ". "
+    }
+
+    private buildDefaultFlavorText(block: MazeBlock) : void {
+        block.flavorText = "The walls of the hedge maze are too high for you to see over. ";
+        block.paths.sort();
+        if (block.paths.length == 1) {
+            block.flavorText += "There is a path to the " + MazeDirection[block.paths[0]] + ". ";
+        }
+        else {
+            block.flavorText += "There are paths to the " + MazeDirection[block.paths[0]];
+            for (let index = 0; index < block.paths.length - 2; index++) {
+                block.flavorText += ", " + MazeDirection[block.paths[index + 1]];
+            }
+            block.flavorText += " and " + MazeDirection[block.paths[block.paths.length - 1]] + ". ";
+        }
     }
 
     startMaze(): void {
@@ -223,6 +227,14 @@ export class MazeState {
     // Travel functions
     moveForward(): void {
         if (this.playerLocation) {
+            // If at maze start, make it a regular block
+            if (this.getSpecialType() == MazeSpecial.Start) {
+                let here = this.getCurrentBlock();
+                here.specialDesc = MazeSpecial.None;
+                this.buildDefaultFlavorText(here);
+            }
+
+            // move location
             switch (this.playerDirection) {
                 case MazeDirection.North:
                     this.playerLocation.y -= 1;

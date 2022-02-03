@@ -13,20 +13,22 @@ export class MazeInterfaceComponent implements OnInit {
 
   @Input() currentGame?: MazeState;
 
-  playerStartDir?: string;
-  playerStartFlavor?: string
+  playerFacingDir?: string;
+  locationDescription?: string
   mazeLeftImage?: MazeImage;
   mazeCenterImage?: MazeImage;
   mazeRightImage?: MazeImage;
+  showForwardButton: boolean;
 
-  constructor() { }
+  constructor() {
+    this.showForwardButton = false;
+   }
 
   ngOnInit(): void {
     if (this.currentGame) {
-      this.playerStartDir = MazeDirection[this.currentGame.playerDirection ? this.currentGame.playerDirection : MazeDirection.North];
-      this.playerStartFlavor = this.currentGame.getFlavorText();
-
-      this.setMazeImages();
+      this.playerFacingDir = MazeDirection[this.currentGame.playerDirection ? this.currentGame.playerDirection : MazeDirection.North];
+      
+      this.configureInterfaceForCurrentLocation();
     }
   }
 
@@ -50,4 +52,24 @@ export class MazeInterfaceComponent implements OnInit {
     }
   }
 
+  moveForward(): void {
+    if (this.currentGame) this.currentGame.moveForward();
+    this.configureInterfaceForCurrentLocation();
+  }
+  turnRight(): void {
+    if (this.currentGame) this.currentGame.turnRight();
+    this.configureInterfaceForCurrentLocation();
+  }
+  turnLeft(): void {
+    if (this.currentGame) this.currentGame.turnLeft();
+    this.configureInterfaceForCurrentLocation();
+  }
+
+  private configureInterfaceForCurrentLocation() : void {
+    this.setMazeImages();
+    if (this.currentGame) {
+      this.showForwardButton = this.currentGame.hasForwardPath();
+      this.locationDescription = this.currentGame.getFlavorText();
+    }
+  }
 }
