@@ -2,7 +2,6 @@ import { MazeScreen } from "./MazeScreen";
 import { MazeBlock } from "./MazeBlock";
 import { MazeDirection } from "./MazeDirection";
 import { MazeSpecial } from "./MazeSpecial";
-import { BuiltinFunctionCall } from "@angular/compiler/src/compiler_util/expression_converter";
 
 class Point {
     x: number;
@@ -121,7 +120,7 @@ export class MazeState {
                 // Open the wall
                 this.maze[here.x][here.y].paths.push(nextDir);
                 here = here.getNextPoint(nextDir);
-                this.maze[here.x][here.y].paths.push(((nextDir + 2) % 4) as MazeDirection);
+                this.maze[here.x][here.y].paths.push(MazeDirection.calcDirection(nextDir + 2));
                 visit1.push(here);
                 dirs = getUnvisitedDirections(here);
             }
@@ -136,7 +135,7 @@ export class MazeState {
 
         // Create maze exit
         let exitBlock: MazeBlock;
-        switch (Math.floor(Math.random() * 4) as MazeDirection) {
+        switch (Math.ceil(Math.random() * 4) as MazeDirection) {
             case MazeDirection.North:
                 exitBlock = this.maze[Math.floor(Math.random() * this.maze.length)][0];
                 exitBlock.specialDir = MazeDirection.North;
@@ -185,7 +184,7 @@ export class MazeState {
         );
         } while (this.maze && this.maze[this.playerLocation.x][this.playerLocation.y].specialDesc == MazeSpecial.Exit);
         
-        this.playerDirection = Math.floor(Math.random() * 4) as MazeDirection;
+        this.playerDirection = Math.ceil(Math.random() * 4) as MazeDirection;
         this.getCurrentBlock().specialDesc = MazeSpecial.Start;
         this.getCurrentBlock().flavorText += "You are still holding the book, but the pages are now blank. You close the book and proceed to explore your surroundings. "
     }
@@ -201,10 +200,10 @@ export class MazeState {
         return this.playerDirection ? this.getCurrentBlock().paths.includes(this.playerDirection) : false;
     }
     hasRightPath(): boolean {
-        return this.playerDirection ? this.getCurrentBlock().paths.includes(((this.playerDirection + 1) % 4) as MazeDirection) : false;
+        return this.playerDirection ? this.getCurrentBlock().paths.includes(MazeDirection.calcDirection(this.playerDirection + 1)) : false;
     }
     hasLeftPath(): boolean {
-        return this.playerDirection ? this.getCurrentBlock().paths.includes(((this.playerDirection + 3) % 4) as MazeDirection) : false;
+        return this.playerDirection ? this.getCurrentBlock().paths.includes(MazeDirection.calcDirection(this.playerDirection + 3)) : false;
     }
 
     // Special location functions
@@ -226,7 +225,7 @@ export class MazeState {
 
     // Travel functions
     moveForward(): void {
-        if (this.playerLocation) {
+        if (this.playerLocation && this.playerDirection) {
             // If at maze start, make it a regular block
             if (this.getSpecialType() == MazeSpecial.Start) {
                 let here = this.getCurrentBlock();
@@ -235,32 +234,17 @@ export class MazeState {
             }
 
             // move location
-            switch (this.playerDirection) {
-                case MazeDirection.North:
-                    this.playerLocation.y -= 1;
-                    break;
-                case MazeDirection.East:
-                    this.playerLocation.x += 1;
-                    break;
-                case MazeDirection.South:
-                    this.playerLocation.y += 1;
-                    break;
-                case MazeDirection.West:
-                    this.playerLocation.x -= 1;
-                    break;
-                default:
-                    break;
-            }
+            this.playerLocation = this.playerLocation.getNextPoint(this.playerDirection);
         }
     }
     turnRight(): void {
         if (this.playerDirection) {
-            this.playerDirection = ((this.playerDirection + 1) % 4) as MazeDirection;
+            this.playerDirection = MazeDirection.calcDirection(this.playerDirection + 1);
         }
     }
     turnLeft(): void {
         if (this.playerDirection) {
-            this.playerDirection = ((this.playerDirection + 3) % 4) as MazeDirection;
+            this.playerDirection = MazeDirection.calcDirection(this.playerDirection + 3);
         }
     }
 
@@ -273,9 +257,9 @@ export class MazeState {
         return facingDirection == queryDirection;
     }
     private isRight(facingDirection: MazeDirection, queryDirection: MazeDirection) {
-        return ((facingDirection + 1) % 4) as MazeDirection == queryDirection;
+        return MazeDirection.calcDirection(facingDirection + 1) == queryDirection;
     }
     private isLeft(facingDirection: MazeDirection, queryDirection: MazeDirection) {
-        return ((facingDirection + 3) % 4) as MazeDirection == queryDirection;
+        return MazeDirection.calcDirection(facingDirection + 3) == queryDirection;
     }
 }
