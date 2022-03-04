@@ -35,9 +35,12 @@ export class MazeInterfaceComponent implements OnInit {
   setMazeImages(): void {
     if (this.currentGame) {
       if (this.currentGame.getSpecialType() == MazeSpecial.Exit) {
-        this.mazeLeftImage = MazeImage.WallLeft;
-        this.mazeCenterImage = MazeImage.WallCenter;
-        this.mazeRightImage = MazeImage.WallRight;
+        this.mazeLeftImage = this.currentGame.isSpecialLeft() ? MazeImage.ExitSpecialLeft 
+          : (this.currentGame.hasLeftPath() ? MazeImage.ExitPathLeft : MazeImage.ExitWallLeft);
+        this.mazeCenterImage = this.currentGame.isSpecialForward() ? MazeImage.ExitSpecialCenter 
+          : (this.currentGame.hasForwardPath() ? MazeImage.ExitPathCenter : MazeImage.ExitWallCenter);
+        this.mazeRightImage = this.currentGame.isSpecialRight() ? MazeImage.ExitSpecialRight 
+          : (this.currentGame.hasRightPath() ? MazeImage.ExitPathRight : MazeImage.ExitWallRight);
       }
       else {
         this.mazeLeftImage = this.currentGame.hasLeftPath() ? MazeImage.PathLeft : MazeImage.WallLeft;

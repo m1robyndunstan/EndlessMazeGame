@@ -1,14 +1,14 @@
-<app-maze-image
-    [imageLeftUrl]="mazeLeftImage"
-    [imageCenterUrl]="mazeCenterImage"
-    [imageRightUrl]="mazeRightImage"
-    ></app-maze-image>
+<div class="container">
+    <app-maze-image
+        [imageLeftUrl]="mazeLeftImage"
+        [imageCenterUrl]="mazeCenterImage"
+        [imageRightUrl]="mazeRightImage"
+        ></app-maze-image>
 
-<div *ngIf="currentGame">
-    <p>{{locationDescription}}</p>
-</div>
+    <div *ngIf="currentGame">
+        <p>{{locationDescription}}</p>
+    </div>
 
-<div class='container'>
     <div class='row'>
         <div class='col d-grid gap-2'>
             <button type='button' class='btn btn-primary' (click)="turnLeft()">Turn Left</button>
