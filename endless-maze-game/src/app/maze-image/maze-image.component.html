@@ -1,5 +1,12 @@
 <div style="white-space: nowrap;">
-    <img src="{{imageLeftUrl}}" />
-    <img src="{{imageCenterUrl}}" />
-    <img src="{{imageRightUrl}}" />
+    <img class="ceiling" src="{{imgCeilingUrl}}" />
+    <img class="floor" src="{{imgFloorUrl}}" />
+
+    <img class="left" src="{{imgLeftBackgroundUrl}}" />
+    <img class="center" src="{{imgCenterBackgroundUrl}}" />
+    <img class="right" src="{{imgRightBackgroundUrl}}" />
+
+    <img class="left" src="{{imgLeftOverlayUrl}}" *ngIf="imgLeftOverlayUrl" />
+    <img class="center" src="{{imgCenterOverlayUrl}}" *ngIf="imgCenterOverlayUrl" />
+    <img class="right" src="{{imgRightOverlayUrl}}" *ngIf="imgRightOverlayUrl" />
 </div>

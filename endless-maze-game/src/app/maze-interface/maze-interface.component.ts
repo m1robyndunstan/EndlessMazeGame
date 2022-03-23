@@ -32,26 +32,27 @@ export class MazeInterfaceComponent implements OnInit {
     }
   }
 
+  // TO DO - redo this function to use new enums and variables
   setMazeImages(): void {
     if (this.currentGame) {
       if (this.currentGame.getSpecialType() == MazeSpecial.Exit) {
-        this.mazeLeftImage = this.currentGame.isSpecialLeft() ? MazeImage.ExitSpecialLeft 
-          : (this.currentGame.hasLeftPath() ? MazeImage.ExitPathLeft : MazeImage.ExitWallLeft);
-        this.mazeCenterImage = this.currentGame.isSpecialForward() ? MazeImage.ExitSpecialCenter 
-          : (this.currentGame.hasForwardPath() ? MazeImage.ExitPathCenter : MazeImage.ExitWallCenter);
-        this.mazeRightImage = this.currentGame.isSpecialRight() ? MazeImage.ExitSpecialRight 
-          : (this.currentGame.hasRightPath() ? MazeImage.ExitPathRight : MazeImage.ExitWallRight);
+        this.mazeLeftImage = this.currentGame.isSpecialLeft() ? MazeImage.OldExitSpecialLeft 
+          : (this.currentGame.hasLeftPath() ? MazeImage.OldExitPathLeft : MazeImage.OldExitWallLeft);
+        this.mazeCenterImage = this.currentGame.isSpecialForward() ? MazeImage.OldExitSpecialCenter 
+          : (this.currentGame.hasForwardPath() ? MazeImage.OldExitPathCenter : MazeImage.OldExitWallCenter);
+        this.mazeRightImage = this.currentGame.isSpecialRight() ? MazeImage.OldExitSpecialRight 
+          : (this.currentGame.hasRightPath() ? MazeImage.OldExitPathRight : MazeImage.OldExitWallRight);
       }
       else {
-        this.mazeLeftImage = this.currentGame.hasLeftPath() ? MazeImage.PathLeft : MazeImage.WallLeft;
-        this.mazeCenterImage = this.currentGame.hasForwardPath() ? MazeImage.PathCenter : MazeImage.WallCenter;
-        this.mazeRightImage = this.currentGame.hasRightPath() ? MazeImage.PathRight : MazeImage.WallRight;
+        this.mazeLeftImage = this.currentGame.hasLeftPath() ? MazeImage.OldPathLeft : MazeImage.OldWallLeft;
+        this.mazeCenterImage = this.currentGame.hasForwardPath() ? MazeImage.OldPathCenter : MazeImage.OldWallCenter;
+        this.mazeRightImage = this.currentGame.hasRightPath() ? MazeImage.OldPathRight : MazeImage.OldWallRight;
       }
     }
     else {
-      this.mazeLeftImage = MazeImage.WallLeft;
-      this.mazeCenterImage = MazeImage.WallCenter;
-      this.mazeRightImage = MazeImage.WallRight;
+      this.mazeLeftImage = MazeImage.OldWallLeft;
+      this.mazeCenterImage = MazeImage.OldWallCenter;
+      this.mazeRightImage = MazeImage.OldWallRight;
     }
   }
 

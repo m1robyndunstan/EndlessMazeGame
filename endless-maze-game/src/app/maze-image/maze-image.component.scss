@@ -1,0 +1,32 @@
+@import '../../styles.scss';
+img {
+    position: absolute;
+    .ceiling, .floor {
+        width: $path-image-width;
+        height: $path-image-height / 2;
+        left: 0;
+        .ceiling {
+            top: 0;
+        }
+        .floor {
+            top: $path-image-height / 2;
+        }
+    }
+    .left, .center, .right {
+        height: $path-image-height;
+        top: 0;
+        .left, .right {
+            width: $path-image-width / 4;
+            .left {
+                left: 0;
+            }
+            .right {
+                left: $path-image-width * 3 / 4
+            }
+        }
+        .center {
+            width: $path-image-width / 2;
+            left: $path-image-width / 4;
+        }
+    }
+}
