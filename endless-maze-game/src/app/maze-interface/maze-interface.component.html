@@ -1,8 +1,12 @@
 <div class="container">
     <app-maze-image
-        [imageLeftUrl]="mazeLeftImage"
-        [imageCenterUrl]="mazeCenterImage"
-        [imageRightUrl]="mazeRightImage"
+        [ceilingType]="imageCeilingType"
+        [floorType]="imageFloorType"
+        [wallType]="imageWallType"
+        [leftImage]="imageDirectionLeft"
+        [centerImage]="imageDirectionCenter"
+        [rightImage]="imageDirectionRight"
+        [specialType]="imageSpecialType"
         ></app-maze-image>
 
     <div *ngIf="currentGame">

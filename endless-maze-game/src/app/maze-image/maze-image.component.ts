@@ -139,6 +139,7 @@ export class MazeImageComponent implements OnInit {
 export enum MazeImageCeilingType {
   Sky
 }
+
 export enum MazeImageFloorType {
   Grass, Stone
 }

@@ -214,13 +214,13 @@ export class MazeState {
         return this.getCurrentBlock().specialDesc;
     }
     isSpecialForward(): boolean {
-        return this.playerDirection ? this.isForward(this.playerDirection, this.getCurrentBlock().specialDir) : false;
+        return this.hasSpecial() && this.playerDirection ? this.isForward(this.playerDirection, this.getCurrentBlock().specialDir) : false;
     }
     isSpecialRight(): boolean {
-        return this.playerDirection ? this.isRight(this.playerDirection, this.getCurrentBlock().specialDir) : false;;
+        return this.hasSpecial() && this.playerDirection ? this.isRight(this.playerDirection, this.getCurrentBlock().specialDir) : false;;
     }
     isSpecialLeft(): boolean {
-        return this.playerDirection ? this.isLeft(this.playerDirection, this.getCurrentBlock().specialDir) : false;
+        return this.hasSpecial() && this.playerDirection ? this.isLeft(this.playerDirection, this.getCurrentBlock().specialDir) : false;
     }
 
     // Travel functions

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MazeState } from '../MazeState';
 import { MazeDirection } from '../MazeDirection';
-import { MazeImage } from '../MazeImage';
 import { MazeSpecial } from '../MazeSpecial';
+import { MazeImageCeilingType, MazeImageFloorType, MazeImageWallType, MazeImageDirectionType } from '../maze-image/maze-image.component';
 
 @Component({
   selector: 'app-maze-interface',
@@ -15,13 +15,25 @@ export class MazeInterfaceComponent implements OnInit {
 
   playerFacingDir?: string;
   locationDescription?: string
-  mazeLeftImage?: MazeImage;
-  mazeCenterImage?: MazeImage;
-  mazeRightImage?: MazeImage;
   showForwardButton: boolean;
+
+  imageCeilingType: MazeImageCeilingType;
+  imageFloorType: MazeImageFloorType;
+  imageWallType: MazeImageWallType;
+  imageDirectionLeft: MazeImageDirectionType;
+  imageDirectionCenter: MazeImageDirectionType;
+  imageDirectionRight : MazeImageDirectionType;
+  imageSpecialType : MazeSpecial;
 
   constructor() {
     this.showForwardButton = false;
+    this.imageCeilingType = MazeImageCeilingType.Sky;
+    this.imageFloorType = MazeImageFloorType.Grass;
+    this.imageWallType = MazeImageWallType.Bush;
+    this.imageDirectionLeft = MazeImageDirectionType.Wall;
+    this.imageDirectionCenter = MazeImageDirectionType.Wall;
+    this.imageDirectionRight = MazeImageDirectionType.Wall;
+    this.imageSpecialType = MazeSpecial.None;
    }
 
   ngOnInit(): void {
@@ -32,27 +44,26 @@ export class MazeInterfaceComponent implements OnInit {
     }
   }
 
-  // TO DO - redo this function to use new enums and variables
-  setMazeImages(): void {
+  setMazeImageVariables(): void {
     if (this.currentGame) {
-      if (this.currentGame.getSpecialType() == MazeSpecial.Exit) {
-        this.mazeLeftImage = this.currentGame.isSpecialLeft() ? MazeImage.OldExitSpecialLeft 
-          : (this.currentGame.hasLeftPath() ? MazeImage.OldExitPathLeft : MazeImage.OldExitWallLeft);
-        this.mazeCenterImage = this.currentGame.isSpecialForward() ? MazeImage.OldExitSpecialCenter 
-          : (this.currentGame.hasForwardPath() ? MazeImage.OldExitPathCenter : MazeImage.OldExitWallCenter);
-        this.mazeRightImage = this.currentGame.isSpecialRight() ? MazeImage.OldExitSpecialRight 
-          : (this.currentGame.hasRightPath() ? MazeImage.OldExitPathRight : MazeImage.OldExitWallRight);
+      this.imageSpecialType = this.currentGame.getSpecialType();
+      this.imageCeilingType = MazeImageCeilingType.Sky;
+      this.imageWallType = MazeImageWallType.Bush;
+
+      switch (this.imageSpecialType) {
+        case MazeSpecial.Exit :
+          this.imageFloorType = MazeImageFloorType.Stone;
+          break;
+        case MazeSpecial.None:
+        case MazeSpecial.Start:
+        default:
+          this.imageFloorType = MazeImageFloorType.Grass;
+          break;
       }
-      else {
-        this.mazeLeftImage = this.currentGame.hasLeftPath() ? MazeImage.OldPathLeft : MazeImage.OldWallLeft;
-        this.mazeCenterImage = this.currentGame.hasForwardPath() ? MazeImage.OldPathCenter : MazeImage.OldWallCenter;
-        this.mazeRightImage = this.currentGame.hasRightPath() ? MazeImage.OldPathRight : MazeImage.OldWallRight;
-      }
-    }
-    else {
-      this.mazeLeftImage = MazeImage.OldWallLeft;
-      this.mazeCenterImage = MazeImage.OldWallCenter;
-      this.mazeRightImage = MazeImage.OldWallRight;
+
+      this.imageDirectionLeft = this.currentGame.isSpecialLeft() ? MazeImageDirectionType.Special : this.currentGame.hasLeftPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
+      this.imageDirectionCenter = this.currentGame.isSpecialForward() ? MazeImageDirectionType.Special : this.currentGame.hasForwardPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
+      this.imageDirectionRight = this.currentGame.isSpecialRight() ? MazeImageDirectionType.Special : this.currentGame.hasRightPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
     }
   }
 
@@ -70,7 +81,7 @@ export class MazeInterfaceComponent implements OnInit {
   }
 
   private configureInterfaceForCurrentLocation() : void {
-    this.setMazeImages();
+    this.setMazeImageVariables();
     if (this.currentGame) {
       this.showForwardButton = this.currentGame.hasForwardPath();
       this.locationDescription = this.currentGame.getFlavorText();
