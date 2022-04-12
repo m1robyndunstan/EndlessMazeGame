@@ -46,24 +46,28 @@ export class MazeInterfaceComponent implements OnInit {
 
   setMazeImageVariables(): void {
     if (this.currentGame) {
-      this.imageSpecialType = this.currentGame.getSpecialType();
       this.imageCeilingType = MazeImageCeilingType.Sky;
       this.imageWallType = MazeImageWallType.Bush;
 
-      switch (this.imageSpecialType) {
+      switch (this.currentGame.getSpecialType()) {
         case MazeSpecial.Exit :
+          this.imageSpecialType = MazeSpecial.Exit;
           this.imageFloorType = MazeImageFloorType.Stone;
           break;
         case MazeSpecial.None:
         case MazeSpecial.Start:
         default:
+          this.imageSpecialType = MazeSpecial.None;
           this.imageFloorType = MazeImageFloorType.Grass;
           break;
       }
 
-      this.imageDirectionLeft = this.currentGame.isSpecialLeft() ? MazeImageDirectionType.Special : this.currentGame.hasLeftPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
-      this.imageDirectionCenter = this.currentGame.isSpecialForward() ? MazeImageDirectionType.Special : this.currentGame.hasForwardPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
-      this.imageDirectionRight = this.currentGame.isSpecialRight() ? MazeImageDirectionType.Special : this.currentGame.hasRightPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
+      this.imageDirectionLeft = this.imageSpecialType != MazeSpecial.None && this.currentGame.isSpecialLeft() ? MazeImageDirectionType.Special : 
+        this.currentGame.hasLeftPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
+      this.imageDirectionCenter = this.imageSpecialType != MazeSpecial.None && this.currentGame.isSpecialForward() ? MazeImageDirectionType.Special : 
+        this.currentGame.hasForwardPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
+      this.imageDirectionRight = this.imageSpecialType != MazeSpecial.None && this.currentGame.isSpecialRight() ? MazeImageDirectionType.Special : 
+        this.currentGame.hasRightPath() ? MazeImageDirectionType.Path : MazeImageDirectionType.Wall;
     }
   }
 
