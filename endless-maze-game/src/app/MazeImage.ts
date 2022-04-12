@@ -26,7 +26,7 @@ export enum MazeImage {
     BushPathRight = 'assets/img/path/path_right_bush.png',
     ShadowPathRight = 'assets/img/path/path_right_shadow.png',
     SkyCeiling = 'assets/img/path/sky_full_length.jpg',
-    BushWallCenter = 'assets/img/path/wall_center.bush.png',
+    BushWallCenter = 'assets/img/path/wall_center_bush.png',
     BushWallLeft = 'assets/img/path/wall_left_bush.png',
     BushWallRight = 'assets/img/path/wall_right_bush.png',
 
