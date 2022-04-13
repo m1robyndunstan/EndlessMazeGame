@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MazeState } from '../MazeState';
 import { MazeSpecial } from '../MazeSpecial';
-import { MazeImageCeilingType, MazeImageFloorType, MazeImageWallType, MazeImageDirectionType } from '../maze-image/maze-image.component';
 import { MazeDirection } from '../maze-model/maze-direction';
+import { MazeImageCeilingType } from '../maze-image/maze-image-ceiling-type';
+import { MazeImageFloorType } from '../maze-image/maze-image-floor-type';
+import { MazeImageWallType } from '../maze-image/maze-image-wall-type';
+import { MazeImageDirectionType } from '../maze-image/maze-image-direction-type';
 
 @Component({
   selector: 'app-maze-interface',

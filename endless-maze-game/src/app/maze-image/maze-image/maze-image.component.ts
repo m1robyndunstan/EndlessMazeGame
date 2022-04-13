@@ -1,7 +1,10 @@
-import { ThisReceiver, ThrowStmt } from '@angular/compiler';
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { MazeImage } from '../MazeImage';
-import { MazeSpecial } from '../MazeSpecial';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { MazeSpecial } from 'src/app/MazeSpecial';
+import { MazeImageCeilingType } from '../maze-image-ceiling-type';
+import { MazeImageDirectionType } from '../maze-image-direction-type';
+import { MazeImageFloorType } from '../maze-image-floor-type';
+import { MazeImageUrl } from '../maze-image-url';
+import { MazeImageWallType } from '../maze-image-wall-type';
 
 @Component({
   selector: 'app-maze-image',
@@ -18,16 +21,16 @@ export class MazeImageComponent implements OnInit {
   @Input() rightImage?: MazeImageDirectionType;
   @Input() specialType?: MazeSpecial;
 
-  imgCeilingUrl?: MazeImage;
-  imgFloorUrl?: MazeImage;
-  imgLeftBackgroundUrl?: MazeImage;
-  imgCenterBackgroundUrl?: MazeImage;
-  imgRightBackgroundUrl?: MazeImage;
-  imgLeftOverlayUrl?: MazeImage;
-  imgCenterOverlayUrl?: MazeImage;
-  imgRightOverlayUrl?: MazeImage;
-
-  constructor() {}
+  imgCeilingUrl?: MazeImageUrl;
+  imgFloorUrl?: MazeImageUrl;
+  imgLeftBackgroundUrl?: MazeImageUrl;
+  imgCenterBackgroundUrl?: MazeImageUrl;
+  imgRightBackgroundUrl?: MazeImageUrl;
+  imgLeftOverlayUrl?: MazeImageUrl;
+  imgCenterOverlayUrl?: MazeImageUrl;
+  imgRightOverlayUrl?: MazeImageUrl;
+  
+  constructor() { }
 
   ngOnInit(): void {
     this.setImages();
@@ -40,46 +43,46 @@ export class MazeImageComponent implements OnInit {
   private setImages() {
     switch(this.ceilingType) {
       case MazeImageCeilingType.Sky:
-        this.imgCeilingUrl = MazeImage.SkyCeiling;
+        this.imgCeilingUrl = MazeImageUrl.SkyCeiling;
         break;
       default:
-        this.imgCeilingUrl = MazeImage.SkyCeiling;
+        this.imgCeilingUrl = MazeImageUrl.SkyCeiling;
         break;
     }
 
     switch(this.floorType) {
       case MazeImageFloorType.Grass:
-        this.imgFloorUrl = MazeImage.GrassFloor;
+        this.imgFloorUrl = MazeImageUrl.GrassFloor;
         break;
       case MazeImageFloorType.Stone:
-        this.imgFloorUrl = MazeImage.StoneFloor;
+        this.imgFloorUrl = MazeImageUrl.StoneFloor;
         break;
       default:
-        this.imgFloorUrl = MazeImage.GrassFloor;
+        this.imgFloorUrl = MazeImageUrl.GrassFloor;
         break;
     }
 
     switch(this.wallType) {
       case MazeImageWallType.Bush:
-        this.imgLeftBackgroundUrl = this.leftImage == MazeImageDirectionType.Path ? MazeImage.BushPathLeft : MazeImage.BushWallLeft;
-        this.imgCenterBackgroundUrl = this.centerImage == MazeImageDirectionType.Path ? MazeImage.BushPathCenter : MazeImage.BushWallCenter;
-        this.imgRightBackgroundUrl = this.rightImage == MazeImageDirectionType.Path ? MazeImage.BushPathRight : MazeImage.BushWallRight;
+        this.imgLeftBackgroundUrl = this.leftImage == MazeImageDirectionType.Path ? MazeImageUrl.BushPathLeft : MazeImageUrl.BushWallLeft;
+        this.imgCenterBackgroundUrl = this.centerImage == MazeImageDirectionType.Path ? MazeImageUrl.BushPathCenter : MazeImageUrl.BushWallCenter;
+        this.imgRightBackgroundUrl = this.rightImage == MazeImageDirectionType.Path ? MazeImageUrl.BushPathRight : MazeImageUrl.BushWallRight;
         break;
       default:
-        this.imgLeftBackgroundUrl = this.leftImage == MazeImageDirectionType.Path ? MazeImage.BushPathLeft : MazeImage.BushWallLeft;
-        this.imgCenterBackgroundUrl = this.centerImage == MazeImageDirectionType.Path ? MazeImage.BushPathCenter : MazeImage.BushWallCenter;
-        this.imgRightBackgroundUrl = this.rightImage == MazeImageDirectionType.Path ? MazeImage.BushPathRight : MazeImage.BushWallRight;
+        this.imgLeftBackgroundUrl = this.leftImage == MazeImageDirectionType.Path ? MazeImageUrl.BushPathLeft : MazeImageUrl.BushWallLeft;
+        this.imgCenterBackgroundUrl = this.centerImage == MazeImageDirectionType.Path ? MazeImageUrl.BushPathCenter : MazeImageUrl.BushWallCenter;
+        this.imgRightBackgroundUrl = this.rightImage == MazeImageDirectionType.Path ? MazeImageUrl.BushPathRight : MazeImageUrl.BushWallRight;
         break;
     }
 
     switch(this.leftImage) {
       case MazeImageDirectionType.Path:
-        this.imgLeftOverlayUrl = MazeImage.ShadowPathLeft;
+        this.imgLeftOverlayUrl = MazeImageUrl.ShadowPathLeft;
         break;
       case MazeImageDirectionType.Special:
         switch(this.specialType) {
           case MazeSpecial.Exit:
-            this.imgLeftOverlayUrl = MazeImage.ExitLeft;
+            this.imgLeftOverlayUrl = MazeImageUrl.ExitLeft;
             break;
           default:
             this.imgLeftOverlayUrl = undefined;
@@ -95,12 +98,12 @@ export class MazeImageComponent implements OnInit {
 
     switch(this.centerImage) {
       case MazeImageDirectionType.Path:
-        this.imgCenterOverlayUrl = MazeImage.ShadowPathCenter;
+        this.imgCenterOverlayUrl = MazeImageUrl.ShadowPathCenter;
         break;
       case MazeImageDirectionType.Special:
         switch(this.specialType) {
           case MazeSpecial.Exit:
-            this.imgCenterOverlayUrl = MazeImage.ExitCenter;
+            this.imgCenterOverlayUrl = MazeImageUrl.ExitCenter;
             break;
           default:
             this.imgCenterOverlayUrl = undefined;
@@ -116,12 +119,12 @@ export class MazeImageComponent implements OnInit {
 
     switch(this.rightImage) {
       case MazeImageDirectionType.Path:
-        this.imgRightOverlayUrl = MazeImage.ShadowPathRight;
+        this.imgRightOverlayUrl = MazeImageUrl.ShadowPathRight;
         break;
       case MazeImageDirectionType.Special:
         switch(this.specialType) {
           case MazeSpecial.Exit:
-            this.imgRightOverlayUrl = MazeImage.ExitRight;
+            this.imgRightOverlayUrl = MazeImageUrl.ExitRight;
             break;
           default:
             this.imgRightOverlayUrl = undefined;
@@ -135,18 +138,4 @@ export class MazeImageComponent implements OnInit {
         break;
     }
   }
-}
-
-export enum MazeImageCeilingType {
-  Sky
-}
-
-export enum MazeImageFloorType {
-  Grass, Stone
-}
-export enum MazeImageWallType {
-  Bush
-}
-export enum MazeImageDirectionType {
-  Wall, Path, Special
 }
