@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MazeImageComponent } from './maze-image/maze-image.component';
+import { PathImageComponent } from './path-image/path-image.component';
 
 
 
 @NgModule({
   declarations: [
-    MazeImageComponent
+    PathImageComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    MazeImageComponent
+    PathImageComponent
   ]
 })
-export class MazeImageModule { }
+export class PathImageModule { }

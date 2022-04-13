@@ -1,5 +1,5 @@
 <div class="container">
-    <app-maze-image
+    <app-path-image
         [ceilingType]="imageCeilingType"
         [floorType]="imageFloorType"
         [wallType]="imageWallType"
@@ -7,7 +7,7 @@
         [centerImage]="imageDirectionCenter"
         [rightImage]="imageDirectionRight"
         [specialType]="imageSpecialType"
-        ></app-maze-image>
+        ></app-path-image>
 
     <div *ngIf="currentGame">
         <p>{{locationDescription}}</p>

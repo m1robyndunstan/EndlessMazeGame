@@ -1,5 +1,5 @@
-import { MazeSpecial } from "../MazeSpecial";
 import { MazeDirection } from "./maze-direction";
+import { MazeSpecial } from "./maze-special";
 
 export class MazeBlock {
     paths: MazeDirection[];

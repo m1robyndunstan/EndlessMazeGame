@@ -1,4 +1,4 @@
-export enum MazeImageUrl {
+export enum ImageUrl {
     // Path Image Components
     GrassFloor = 'assets/img/path/grass_full_length.jpg',
     BushPathCenter = 'assets/img/path/path_center_bush.png',

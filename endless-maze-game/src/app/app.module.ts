@@ -6,8 +6,7 @@ import { MazeMainComponent } from './maze-main/maze-main.component';
 import { PageFooterComponent } from './page-footer/page-footer.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { MazeIntroComponent } from './maze-intro/maze-intro.component';
-import { MazeInterfaceComponent } from './maze-interface/maze-interface.component';
-import { MazeImageModule } from './maze-image/maze-image.module';
+import { PathInterfaceModule } from './path-interface/path-interface.module';
 
 @NgModule({
   declarations: [
@@ -15,12 +14,11 @@ import { MazeImageModule } from './maze-image/maze-image.module';
     MazeMainComponent,
     PageFooterComponent,
     PageHeaderComponent,
-    MazeIntroComponent,
-    MazeInterfaceComponent
+    MazeIntroComponent
   ],
   imports: [
     BrowserModule,
-    MazeImageModule
+    PathInterfaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

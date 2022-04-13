@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MazeImageComponent } from './maze-image.component';
+import { PathImageComponent } from './path-image.component';
 
-describe('MazeImageComponent', () => {
-  let component: MazeImageComponent;
-  let fixture: ComponentFixture<MazeImageComponent>;
+describe('PathImageComponent', () => {
+  let component: PathImageComponent;
+  let fixture: ComponentFixture<PathImageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MazeImageComponent ]
+      declarations: [ PathImageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MazeImageComponent);
+    fixture = TestBed.createComponent(PathImageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

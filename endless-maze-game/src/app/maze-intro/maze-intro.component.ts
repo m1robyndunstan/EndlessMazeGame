@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MazeScreen } from '../MazeScreen';
-import { MazeState } from '../MazeState';
+import { MazeScreen } from '../maze-main/maze-screen';
+import { MazeState } from '../maze-model/maze-state';
 
 @Component({
   selector: 'app-maze-intro',
