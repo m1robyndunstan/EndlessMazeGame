@@ -1,7 +1,7 @@
 import { MazeScreen } from "./MazeScreen";
-import { MazeBlock } from "./MazeBlock";
 import { MazeDirection } from "./MazeDirection";
 import { MazeSpecial } from "./MazeSpecial";
+import { MazeBlock } from "./maze-model/maze-block";
 
 class Point {
     x: number;
