@@ -1,6 +1,5 @@
 import { MazeBlock } from "./maze-block";
 import { MazeDirection } from "./maze-direction";
-import { MazeSpecial } from "./maze-special";
 import { Point } from "./point";
 
 export class MazeMap {
@@ -19,6 +18,17 @@ export class MazeMap {
 
     public getDimensions(): number[] {
         return this.dimensions;
+    }
+
+    public getBlock(x: number, y:  number) : MazeBlock {
+        if (this.maze 
+            && this.maze.length > x && x > 0
+            && this.maze[x].length > y && y > 0) {
+                return this.maze[x][y];
+        }
+        else {
+            return new MazeBlock();
+        }
     }
 
     private buildMaze(dimX: number, dimY: number) {
@@ -96,13 +106,6 @@ export class MazeMap {
             }
         } while (visit1.length < dimX * dimY);
 
-        // Assign default flavor text
-        this.maze.forEach(mazeRow => {
-            mazeRow.forEach(block => {
-                this.buildDefaultFlavorText(block);
-            });
-        });
-
         // Create maze exit
         let exitBlock: MazeBlock;
         switch (Math.ceil(Math.random() * 4) as MazeDirection) {
@@ -127,26 +130,5 @@ export class MazeMap {
                 exitBlock.specialDir = MazeDirection.North;
                 break;
         }
-        exitBlock.specialDesc = MazeSpecial.Exit;
-        exitBlock.flavorText += "There is a wooden door in the hedge wall to the " + MazeDirection[exitBlock.specialDir] + ". "
-    }
-
-    private buildDefaultFlavorText(block: MazeBlock) : void {
-        block.flavorText = "The walls of the hedge maze are too high for you to see over. ";
-        block.paths.sort();
-        if (block.paths.length == 1) {
-            block.flavorText += "There is a path to the " + MazeDirection[block.paths[0]] + ". ";
-        }
-        else {
-            block.flavorText += "There are paths to the " + MazeDirection[block.paths[0]];
-            for (let index = 0; index < block.paths.length - 2; index++) {
-                block.flavorText += ", " + MazeDirection[block.paths[index + 1]];
-            }
-            block.flavorText += " and " + MazeDirection[block.paths[block.paths.length - 1]] + ". ";
-        }
-    }
-
-    startMaze(): void {
-        
     }
 }

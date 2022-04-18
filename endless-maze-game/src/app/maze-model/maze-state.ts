@@ -1,4 +1,5 @@
 import { MazeScreen } from "../maze-main/maze-screen";
+import { FlavorText } from "./flavor-text";
 import { MazeBlock } from "./maze-block";
 import { MazeDirection } from "./maze-direction";
 import { MazeMap } from "./maze-map";
@@ -7,33 +8,34 @@ import { Point } from "./point";
 
 export class MazeState {
     currentScreen: MazeScreen;
-    map?: MazeMap;
+    map: MazeMap;
     playerLocation?: Point;
     playerDirection?: MazeDirection;
+    flavorText: FlavorText;
 
     constructor(dimX?: number, dimY?:number) {
         // set maze dimensions
         this.map = new MazeMap(dimX, dimY);
         this.currentScreen = MazeScreen.Intro;
+        this.flavorText = new FlavorText();
     }
 
     startMaze(): void {
         do {
         this.playerLocation = new Point(
             Math.floor(Math.random() * this.map.getDimensions()[0]),
-            Math.floor(Math.random() * this.dimensions[1])
+            Math.floor(Math.random() * this.map.getDimensions()[1])
         );
-        } while (this.maze && this.maze[this.playerLocation.x][this.playerLocation.y].specialDesc == MazeSpecial.Exit);
+        } while (this.map.getBlock(this.playerLocation.x,this.playerLocation.y).specialDesc == MazeSpecial.Exit);
         
         this.playerDirection = Math.ceil(Math.random() * 4) as MazeDirection;
         this.getCurrentBlock().specialDesc = MazeSpecial.Start;
-        this.getCurrentBlock().flavorText += "You are still holding the book, but the pages are now blank. You close the book and proceed to explore your surroundings. "
     }
 
     getFlavorText(): string {
-        let flavorText = this.getCurrentBlock().flavorText;
-        if (this.playerDirection) flavorText += "You are facing " + MazeDirection[this.playerDirection] + ". ";
-        return flavorText;
+        return this.playerLocation && this.playerDirection 
+            ? this.flavorText.buildFlavorText(this.getCurrentBlock(), this.playerDirection)
+            : "";
     }
 
     // Navigation functions
@@ -71,7 +73,6 @@ export class MazeState {
             if (this.getSpecialType() == MazeSpecial.Start) {
                 let here = this.getCurrentBlock();
                 here.specialDesc = MazeSpecial.None;
-                this.buildDefaultFlavorText(here);
             }
 
             // move location
@@ -91,7 +92,7 @@ export class MazeState {
 
     // private functions
     private getCurrentBlock(): MazeBlock {
-        return this.maze && this.playerLocation ? this.maze[this.playerLocation.x][this.playerLocation.y] : new MazeBlock();
+        return this.map && this.playerLocation ? this.map.getBlock(this.playerLocation.x, this.playerLocation.y) : new MazeBlock();
     }
 
     private isForward(facingDirection: MazeDirection, queryDirection: MazeDirection) {
