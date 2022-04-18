@@ -22,8 +22,8 @@ export class MazeMap {
 
     public getBlock(x: number, y:  number) : MazeBlock {
         if (this.maze 
-            && this.maze.length > x && x > 0
-            && this.maze[x].length > y && y > 0) {
+            && this.maze.length > x && x >= 0
+            && this.maze[x].length > y && y >= 0) {
                 return this.maze[x][y];
         }
         else {
