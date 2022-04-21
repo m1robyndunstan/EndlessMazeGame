@@ -1,5 +1,6 @@
 export enum MazeScreen {
     Intro = 1,
     Interface = 2,
-    Exit = 3
+    Exit = 3,
+    End = 4
 }

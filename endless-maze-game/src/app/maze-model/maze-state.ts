@@ -12,12 +12,14 @@ export class MazeState {
     playerLocation?: Point;
     playerDirection?: MazeDirection;
     flavorText: FlavorText;
+    doorLocked: boolean;
 
     constructor(dimX?: number, dimY?:number) {
         // set maze dimensions
         this.map = new MazeMap(dimX, dimY);
         this.currentScreen = MazeScreen.Intro;
         this.flavorText = new FlavorText();
+        this.doorLocked = true;
     }
 
     startMaze(): void {
@@ -30,7 +32,11 @@ export class MazeState {
         
         this.playerDirection = Math.ceil(Math.random() * 4) as MazeDirection;
         this.getCurrentBlock().specialDesc = MazeSpecial.Start;
+        this.doorLocked = true;
         this.map.whereIsStuff();
+    }
+    newMaze(): void {
+        this.map = new MazeMap(this.map.getDimensions()[0], this.map.getDimensions()[1]);
     }
 
     getFlavorText(): string {

@@ -8,6 +8,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { MazeIntroComponent } from './maze-intro/maze-intro.component';
 import { PathInterfaceModule } from './path-interface/path-interface.module';
 import { ExitInterfaceComponent } from './exit-interface/exit-interface.component';
+import { MazeEndComponent } from './maze-end/maze-end.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ExitInterfaceComponent } from './exit-interface/exit-interface.componen
     PageFooterComponent,
     PageHeaderComponent,
     MazeIntroComponent,
-    ExitInterfaceComponent
+    ExitInterfaceComponent,
+    MazeEndComponent
   ],
   imports: [
     BrowserModule,

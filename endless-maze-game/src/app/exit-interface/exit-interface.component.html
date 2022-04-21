@@ -1,1 +1,19 @@
-<p>exit-interface works!</p>
+<div class="container">
+    <img src="assets/img/path/exit_center.png" class='mx-auto d-block' />
+
+    <p class='text-center my-2'>
+        {{description}}
+    </p>
+
+    <div class='row mt-2'>
+        <div class='col-6 mx-auto d-grid gap-2'>
+            <button type="button" class="btn btn-primary btn-lg" (click)="displayText(examineDoorText)">Examine the door</button>
+            <button type="button" class="btn btn-primary btn-lg" (click)="displayText(knockText)">Knock on the door</button>
+            <button type='button' class='btn btn-primary btn-lg' (click)="openDoor()">Open the door</button>
+            <button type="button" class="btn btn-primary btn-lg" (click)="displayText(breakDownText)">Break down the door</button>
+            <button type="button" class="btn btn-primary btn-lg" (click)="displayText(examineSlotText)">Examine the slot</button>
+            <button *ngIf="doorIsLocked" type="button" class="btn btn-primary btn-lg" (click)="unlockDoor()">Put the book in the slot</button>
+            <button type="button" class="btn btn-primary btn-lg" (click)="goBack()">Continue exploring the maze</button>
+        </div>
+    </div>
+</div>>
