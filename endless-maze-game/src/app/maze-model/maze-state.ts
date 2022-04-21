@@ -30,6 +30,7 @@ export class MazeState {
         
         this.playerDirection = Math.ceil(Math.random() * 4) as MazeDirection;
         this.getCurrentBlock().specialDesc = MazeSpecial.Start;
+        this.map.whereIsStuff();
     }
 
     getFlavorText(): string {

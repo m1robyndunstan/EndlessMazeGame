@@ -1,5 +1,6 @@
 import { MazeBlock } from "./maze-block";
 import { MazeDirection } from "./maze-direction";
+import { MazeSpecial } from "./maze-special";
 import { Point } from "./point";
 
 export class MazeMap {
@@ -111,24 +112,41 @@ export class MazeMap {
         switch (Math.ceil(Math.random() * 4) as MazeDirection) {
             case MazeDirection.North:
                 exitBlock = this.maze[Math.floor(Math.random() * this.maze.length)][0];
+                exitBlock.specialDesc = MazeSpecial.Exit;
                 exitBlock.specialDir = MazeDirection.North;
                 break;
             case MazeDirection.East:
                 exitBlock = this.maze[this.maze.length - 1][Math.floor(Math.random() * this.maze[0].length)];
+                exitBlock.specialDesc = MazeSpecial.Exit;
                 exitBlock.specialDir = MazeDirection.East;
                 break;
             case MazeDirection.South:
                 exitBlock = this.maze[Math.floor(Math.random() * this.maze.length)][this.maze.length - 1];
+                exitBlock.specialDesc = MazeSpecial.Exit;
                 exitBlock.specialDir = MazeDirection.South;
                 break;
             case MazeDirection.West:
                 exitBlock = this.maze[0][Math.floor(Math.random() * this.maze[0].length)];
+                exitBlock.specialDesc = MazeSpecial.Exit;
                 exitBlock.specialDir = MazeDirection.West;
                 break;
             default:
                 exitBlock = this.maze[0][0];
+                exitBlock.specialDesc = MazeSpecial.Exit;
                 exitBlock.specialDir = MazeDirection.North;
                 break;
+        }
+    }
+
+    public whereIsStuff(): void {
+        if (this.maze) {
+            for (let i = 0; i < this.maze.length; i++) {
+                for (let j = 0; j < this.maze[i].length; j++) {
+                    if (this.maze[i][j].specialDesc != MazeSpecial.None) {
+                        console.log(MazeSpecial[this.maze[i][j].specialDesc] + " " + i + ", " + j);
+                    }
+                }
+            }
         }
     }
 }
