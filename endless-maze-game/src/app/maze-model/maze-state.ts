@@ -67,6 +67,35 @@ export class MazeState {
         return this.hasSpecial() && this.playerDirection ? this.isLeft(this.playerDirection, this.getCurrentBlock().specialDir) : false;
     }
 
+    // Action functions
+    hasAction(): boolean {
+        switch (this.getSpecialType()) {
+            case MazeSpecial.Exit:
+                return true;
+            case MazeSpecial.None:
+            case MazeSpecial.Start:
+            default:
+                return false;
+        }
+    }
+    getActionText(): string {
+        switch (this.getSpecialType()) {
+            case MazeSpecial.Exit:
+                return "Examine Door";
+            default:
+                return "";
+        }
+    }
+    doAction(): void {
+        switch (this.getSpecialType()) {
+            case MazeSpecial.Exit:
+                this.currentScreen = MazeScreen.Exit;
+                break;
+            default:
+                break;
+        }
+    }
+
     // Travel functions
     moveForward(): void {
         if (this.playerLocation && this.playerDirection) {

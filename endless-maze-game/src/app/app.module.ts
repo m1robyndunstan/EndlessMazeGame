@@ -7,6 +7,7 @@ import { PageFooterComponent } from './page-footer/page-footer.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { MazeIntroComponent } from './maze-intro/maze-intro.component';
 import { PathInterfaceModule } from './path-interface/path-interface.module';
+import { ExitInterfaceComponent } from './exit-interface/exit-interface.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PathInterfaceModule } from './path-interface/path-interface.module';
     MazeMainComponent,
     PageFooterComponent,
     PageHeaderComponent,
-    MazeIntroComponent
+    MazeIntroComponent,
+    ExitInterfaceComponent
   ],
   imports: [
     BrowserModule,

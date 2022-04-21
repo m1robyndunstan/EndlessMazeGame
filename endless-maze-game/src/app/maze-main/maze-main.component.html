@@ -3,4 +3,6 @@
         [currentGame]="currentGame"></app-maze-intro>
     <app-path-interface *ngSwitchCase="MazeScreen.Interface"
         [currentGame]="currentGame"></app-path-interface>
+    <app-exit-interface *ngSwitchCase="MazeScreen.Exit"
+        [currentGame]="currentGame"></app-exit-interface>
 </ng-container>

@@ -19,6 +19,8 @@ export class PathInterfaceComponent implements OnInit {
   playerFacingDir?: string;
   locationDescription?: string
   showForwardButton: boolean;
+  showActionButton: boolean;
+  actionButtonText?: string;
 
   imageCeilingType: CeilingType;
   imageFloorType: FloorType;
@@ -30,6 +32,7 @@ export class PathInterfaceComponent implements OnInit {
 
   constructor() {
     this.showForwardButton = false;
+    this.showActionButton = false;
     this.imageCeilingType = CeilingType.Sky;
     this.imageFloorType = FloorType.Grass;
     this.imageWallType = WallType.Bush;
@@ -87,11 +90,18 @@ export class PathInterfaceComponent implements OnInit {
     this.configureInterfaceForCurrentLocation();
   }
 
+  doAction(): void {
+    if (this.currentGame) this.currentGame.doAction();
+  }
+
   private configureInterfaceForCurrentLocation() : void {
     this.setMazeImageVariables();
     if (this.currentGame) {
       this.showForwardButton = this.currentGame.hasForwardPath();
       this.locationDescription = this.currentGame.getFlavorText();
+
+      this.showActionButton = this.currentGame.hasAction();
+      this.actionButtonText = this.currentGame.getActionText();
     }
   }
 }
