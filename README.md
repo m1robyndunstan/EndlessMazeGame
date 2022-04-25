@@ -33,9 +33,22 @@ Navigate a maze and solve puzzles to escape!
 
 ## Technologies
 
-- Angular 12
-- Font Awesome 5
-- Bootstrap 5
+- [Angular 12](https://angular.io/)
+- [Font Awesome 5](https://fontawesome.com/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [Gimp](https://www.gimp.org/)
+
+## Sources
+
+- Maze Algorithm - I've lost the original link I learned from, but the algorithm is close to [Recursive Backtracker](https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation).
+
+### Images
+
+- [Bush](https://unsplash.com/photos/zMWfRUiFqq0)
+- [Sky](https://unsplash.com/photos/rOAFxjnfRgg)
+- [Grass](https://unsplash.com/photos/Y90MI--vSuI)
+- [Pavement Stones](https://pixabay.com/photos/stone-pavement-road-gray-stone-3582751/)
+- Most other graphics are taken from [Glitch](https://www.glitchthegame.com/)
 
 ## Change Log
 
