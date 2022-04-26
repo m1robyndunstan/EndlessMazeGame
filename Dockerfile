@@ -2,7 +2,7 @@
 FROM node:16-bullseye as build-env
 
 # Create app directory
-WORKDIR /app
+WORKDIR /endless-maze-game
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -10,8 +10,8 @@ WORKDIR /app
 COPY endless-maze-game/package.json package.json
 COPY endless-maze-game/yarn.lock yarn.lock
 COPY container-entrypoint.sh container-entrypoint.sh
+EXPOSE 4200
 RUN yarn
 RUN npm install -g @angular/cli
 RUN npm link ng
-EXPOSE 4200
 ENTRYPOINT [ "./container-entrypoint.sh" ]
