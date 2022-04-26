@@ -22,6 +22,20 @@ Navigate a maze and solve puzzles to escape!
 1. Run `ng serve`.
 1. Open a browser to URL [http://localhost:4200/](http://localhost:4200/).
 
+### Run in Docker
+
+1. Open Docker.
+1. Check Docker settings.
+    1. Right-click the Docker icon in the lower right corner and select Settings.
+    1. Under Resources, File Sharing - check that the folder for this repository is shared.
+    1. Under General - check that WSL2 is not being used.
+1. Open a Git Bash commandline window.
+1. Run the following commands in Git Bash.
+    1. `./dock clean` to remove any previous builds or containers
+    1. `./dock build` to build the project into a container
+    1. `./dock run` to run the container with this project
+1. Open a browser to URL [http://localhost:8080/](http://localhost:8080). The container may take a few minutes to finish starting up. To view the container's progress in startup processing, open the Docker Dashboard and click the container name to display the log.
+
 ### Build for Distribution
 
 1. Open a commandline and navigate to folder `<git repository directory>/endless-maze-game`.
