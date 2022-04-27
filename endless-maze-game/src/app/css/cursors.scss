@@ -1,0 +1,45 @@
+$cursor-default: url('../../assets/cur/default.cur');
+$cursor-back: url('../../assets/cur/go_back.cur');
+$cursor-forward: url('../../assets/cur/go_forward.cur');
+$cursor-left: url('../../assets/cur/go_left.cur');
+$cursor-right: url('../../assets/cur/go_right.cur');
+$cursor-store: url('../../assets/cur/store.cur');
+$cursor-use: url('../../assets/cur/use.cur');
+$cursor-in: url('../../assets/cur/zoom_in.cur');
+$cursor-out: url('../../assets/cur/zoom_out.cur');
+
+.cursor-default {
+    cursor: $cursor-default, default;
+}
+
+.cursor-back {
+    cursor: $cursor-back, s-resize;
+}
+
+.cursor-forward {
+    cursor: $cursor-forward, n-resize;
+}
+
+.cursor-left {
+    cursor: $cursor-left, w-resize;
+}
+
+.cursor-right {
+    cursor: $cursor-right, e-resize;
+}
+
+.cursor-store {
+    cursor: $cursor-store, grab;
+}
+
+.cursor-use {
+    cursor: $cursor-use, pointer;
+}
+
+.cursor-in {
+    cursor: $cursor-in, zoom-in;
+}
+
+.cursor-out {
+    cursor: $cursor-out, zoom-out;
+}

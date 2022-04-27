@@ -1,4 +1,4 @@
-<div class="mx-auto">
+<div class="mx-auto cursor-default">
     <img class="ceiling" src="{{imgCeilingUrl}}" />
     <img class="floor" src="{{imgFloorUrl}}" />
 
@@ -9,4 +9,14 @@
     <img class="left" src="{{imgLeftOverlayUrl}}" *ngIf="imgLeftOverlayUrl" />
     <img class="center" src="{{imgCenterOverlayUrl}}" *ngIf="imgCenterOverlayUrl" />
     <img class="right" src="{{imgRightOverlayUrl}}" *ngIf="imgRightOverlayUrl" />
+
+    <!-- The order of divs is intentional for cursors to display over the appropriate section
+        |         |     Forward      |         |
+        |   Left  | ---------------- | Right   |
+        |         |     Back         |         |
+    -->
+    <div class="center" ></div>
+    <div class="floor" ></div>
+    <div class="left" ></div>
+    <div class="right" ></div>
 </div>
