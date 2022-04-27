@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MazeSpecial } from 'src/app/maze-model/maze-special';
 import { CeilingType } from '../ceiling-type';
 import { DirectionType } from '../direction-type';
@@ -19,7 +19,10 @@ export class PathImageComponent implements OnInit {
   @Input() leftImage?: DirectionType;
   @Input() centerImage?: DirectionType;
   @Input() rightImage?: DirectionType;
+  @Input() backImage?: DirectionType;
   @Input() specialType?: MazeSpecial;
+
+  @Output() travelDirection = new EventEmitter<number>();
 
   imgCeilingUrl?: ImageUrl;
   imgFloorUrl?: ImageUrl;
@@ -30,7 +33,7 @@ export class PathImageComponent implements OnInit {
   imgCenterOverlayUrl?: ImageUrl;
   imgRightOverlayUrl?: ImageUrl;
   
-  constructor() { }
+  constructor() {  }
 
   ngOnInit(): void {
     this.setImages();
@@ -38,6 +41,104 @@ export class PathImageComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setImages();
+  }
+
+  getCenterCursor(): string {
+    switch(this.centerImage) {
+      case DirectionType.Path:
+        return "cursor-forward";
+      case DirectionType.Special:
+        return "cursor-in";
+      default:
+        return "cursor-default";
+    }
+  }
+
+  getLeftCursor(): string {
+    switch(this.leftImage) {
+      case DirectionType.Path:
+        return "cursor-left";
+      case DirectionType.Special:
+        return "cursor-in";
+      default:
+        return "cursor-default";
+    }
+  }
+
+  getRightCursor(): string {
+    switch(this.rightImage) {
+      case DirectionType.Path:
+        return "cursor-right";
+      case DirectionType.Special:
+        return "cursor-in";
+      default:
+        return "cursor-default";
+    }
+  }
+
+  getBackCursor(): string {
+    switch(this.backImage) {
+      case DirectionType.Path:
+        return "cursor-back";
+      case DirectionType.Special:
+        return "cursor-in";
+      default:
+        return "cursor-default";
+    }
+  }
+
+  
+
+  goForward(): void {
+    switch(this.centerImage) {
+      case DirectionType.Path:
+        this.travelDirection.emit(0);
+        break;
+      case DirectionType.Special:
+        this.travelDirection.emit(-1);
+        break;
+      default:
+        break;
+    }
+  }
+
+  goLeft(): void {
+    switch(this.leftImage) {
+      case DirectionType.Path:
+        this.travelDirection.emit(3);
+        break;
+      case DirectionType.Special:
+        this.travelDirection.emit(-1);
+        break;
+      default:
+        break;
+    }
+  }
+
+  goRight(): void {
+    switch(this.rightImage) {
+      case DirectionType.Path:
+        this.travelDirection.emit(1);
+        break;
+      case DirectionType.Special:
+        this.travelDirection.emit(-1);
+        break;
+      default:
+        break;
+    }
+  }
+
+  goBack(): void {
+    switch(this.backImage) {
+      case DirectionType.Path:
+        this.travelDirection.emit(2);
+        break;
+      case DirectionType.Special:
+        this.travelDirection.emit(-1);
+        break;
+      default:
+        break;
+    }
   }
 
   private setImages() {

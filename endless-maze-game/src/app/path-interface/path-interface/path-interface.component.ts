@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { MazeDirection } from 'src/app/maze-model/maze-direction';
 import { MazeSpecial } from 'src/app/maze-model/maze-special';
 import { MazeState } from 'src/app/maze-model/maze-state';
@@ -28,6 +28,7 @@ export class PathInterfaceComponent implements OnInit {
   imageDirectionLeft: DirectionType;
   imageDirectionCenter: DirectionType;
   imageDirectionRight : DirectionType;
+  imageDirectionBack: DirectionType;
   imageSpecialType : MazeSpecial;
 
   constructor() {
@@ -39,6 +40,7 @@ export class PathInterfaceComponent implements OnInit {
     this.imageDirectionLeft = DirectionType.Wall;
     this.imageDirectionCenter = DirectionType.Wall;
     this.imageDirectionRight = DirectionType.Wall;
+    this.imageDirectionBack = DirectionType.Wall;
     this.imageSpecialType = MazeSpecial.None;
    }
 
@@ -74,6 +76,33 @@ export class PathInterfaceComponent implements OnInit {
         this.currentGame.hasForwardPath() ? DirectionType.Path : DirectionType.Wall;
       this.imageDirectionRight = this.imageSpecialType != MazeSpecial.None && this.currentGame.isSpecialRight() ? DirectionType.Special : 
         this.currentGame.hasRightPath() ? DirectionType.Path : DirectionType.Wall;
+      this.imageDirectionBack = this.imageSpecialType != MazeSpecial.None && this.currentGame.isSpecialBack() ? DirectionType.Special : 
+        this.currentGame.hasBackPath() ? DirectionType.Path : DirectionType.Wall;
+    }
+  }
+
+  doTravel(direction: number): void {
+    switch(direction) {
+      case 0:
+        this.moveForward();
+        break;
+      case 1:
+        this.turnRight();
+        this.moveForward();
+        break;
+      case 2:
+        this.turnAround();
+        this.moveForward();
+        break;
+      case 3:
+        this.turnLeft();
+        this.moveForward();
+        break;
+      case -1:
+        this.doAction();
+        break;
+      default:
+        break;
     }
   }
 
@@ -87,6 +116,10 @@ export class PathInterfaceComponent implements OnInit {
   }
   turnLeft(): void {
     if (this.currentGame) this.currentGame.turnLeft();
+    this.configureInterfaceForCurrentLocation();
+  }
+  turnAround(): void {
+    if (this.currentGame) this.currentGame.turnAround();
     this.configureInterfaceForCurrentLocation();
   }
 

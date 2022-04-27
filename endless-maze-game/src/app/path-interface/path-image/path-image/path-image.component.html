@@ -15,8 +15,8 @@
         |   Left  | ---------------- | Right   |
         |         |     Back         |         |
     -->
-    <div class="center" ></div>
-    <div class="floor" ></div>
-    <div class="left" ></div>
-    <div class="right" ></div>
+    <div class="center" [ngClass]="getCenterCursor()" (click)="goForward()"></div>
+    <div class="floor" [ngClass]="getBackCursor()" (click)="goBack()"></div>
+    <div class="left" [ngClass]="getLeftCursor()" (click)="goLeft()"></div>
+    <div class="right" [ngClass]="getRightCursor()" (click)="goRight()"></div>
 </div>

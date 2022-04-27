@@ -6,23 +6,12 @@
         [leftImage]="imageDirectionLeft"
         [centerImage]="imageDirectionCenter"
         [rightImage]="imageDirectionRight"
+        [backImage]="imageDirectionBack"
         [specialType]="imageSpecialType"
+        (travelDirection)="doTravel($event)"
         ></app-path-image>
 
     <div *ngIf="currentGame">
         <p>{{locationDescription}}</p>
-    </div>
-
-    <div class='row'>
-        <div class='col d-grid gap-2'>
-            <button type='button' class='btn btn-primary' (click)="turnLeft()">Turn Left</button>
-        </div>
-        <div class='col-6 d-grid gap-2'>
-            <button *ngIf="showForwardButton" type='button' class='btn btn-primary' (click)="moveForward()">Move Forward</button>
-            <button *ngIf="showActionButton" type="button" class="btn btn-primary" (click)="doAction()">{{actionButtonText}}</button>
-        </div>
-        <div class='col d-grid gap-2'>
-            <button type='button' class='btn btn-primary' (click)="turnRight()">Turn Right</button>
-        </div>
     </div>
 </div>

@@ -55,6 +55,9 @@ export class MazeState {
     hasLeftPath(): boolean {
         return this.playerDirection ? this.getCurrentBlock().paths.includes(MazeDirection.calcDirection(this.playerDirection + 3)) : false;
     }
+    hasBackPath(): boolean {
+        return this.playerDirection ? this.getCurrentBlock().paths.includes(MazeDirection.calcDirection(this.playerDirection + 2)) : false;
+    }
 
     // Special location functions
     hasSpecial(): boolean {
@@ -71,6 +74,9 @@ export class MazeState {
     }
     isSpecialLeft(): boolean {
         return this.hasSpecial() && this.playerDirection ? this.isLeft(this.playerDirection, this.getCurrentBlock().specialDir) : false;
+    }
+    isSpecialBack(): boolean {
+        return this.hasSpecial() && this.playerDirection ? this.isBack(this.playerDirection, this.getCurrentBlock().specialDir) : false;
     }
 
     // Action functions
@@ -125,6 +131,11 @@ export class MazeState {
             this.playerDirection = MazeDirection.calcDirection(this.playerDirection + 3);
         }
     }
+    turnAround(): void {
+        if (this.playerDirection) {
+            this.playerDirection = MazeDirection.calcDirection(this.playerDirection + 2);
+        }
+    }
 
     // private functions
     private getCurrentBlock(): MazeBlock {
@@ -139,5 +150,8 @@ export class MazeState {
     }
     private isLeft(facingDirection: MazeDirection, queryDirection: MazeDirection) {
         return MazeDirection.calcDirection(facingDirection + 3) == queryDirection;
+    }
+    private isBack(facingDirection: MazeDirection, queryDirection: MazeDirection) {
+        return MazeDirection.calcDirection(facingDirection + 2) == queryDirection;
     }
 }
