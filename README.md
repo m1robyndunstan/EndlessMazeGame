@@ -66,6 +66,10 @@ Navigate a maze and solve puzzles to escape!
 
 ## Change Log
 
+### [1.1] - 2022-04-27
+
+- Use cursors on the image for travel instead of buttons
+
 ### [1.0] - 2022-04-25
 
 Basic version of the game complete.
