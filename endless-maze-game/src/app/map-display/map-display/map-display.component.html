@@ -1,0 +1,7 @@
+<div class="container map-display">
+    <div class="row" *ngIf="currentGame">
+        <div class="col" *ngFor="let mapCol of currentGame.map.maze">
+            <app-map-block *ngFor="let mapBlock of mapCol"></app-map-block>
+        </div>
+    </div>
+</div>

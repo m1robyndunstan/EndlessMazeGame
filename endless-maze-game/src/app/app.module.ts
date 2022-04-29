@@ -9,6 +9,7 @@ import { MazeIntroComponent } from './maze-intro/maze-intro.component';
 import { PathInterfaceModule } from './path-interface/path-interface.module';
 import { ExitInterfaceComponent } from './exit-interface/exit-interface.component';
 import { MazeEndComponent } from './maze-end/maze-end.component';
+import { MapDisplayModule } from './map-display/map-display.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MazeEndComponent } from './maze-end/maze-end.component';
   ],
   imports: [
     BrowserModule,
-    PathInterfaceModule
+    PathInterfaceModule,
+    MapDisplayModule
   ],
   providers: [],
   bootstrap: [AppComponent]
