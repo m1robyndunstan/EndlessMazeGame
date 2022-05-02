@@ -66,6 +66,10 @@ Navigate a maze and solve puzzles to escape!
 
 ## Change Log
 
+### [1.2] - 2022-05-02
+
+- Display a map of the maze (Yes, this makes the game very easy. The map will be hidden under a cheat code in future versions.)
+
 ### [1.1] - 2022-04-27
 
 - Use cursors on the image for travel instead of buttons

@@ -1,7 +1,15 @@
 <div class="container map-display">
-    <div class="row" *ngIf="currentGame">
-        <div class="col" *ngFor="let mapCol of currentGame.map.maze">
-            <app-map-block *ngFor="let mapBlock of mapCol"></app-map-block>
+    <div class="row" *ngIf="currentGame && currentGame.playerLocation">
+        <div class="col mx-0 my-0 px-0 py-0" *ngFor="let mapCol of currentGame.map.maze; let x = index">
+            <app-map-block class="mx-0 my-0 px-0 py-0" 
+                *ngFor="let mapBlock of mapCol; let y = index"
+                [block]="mapBlock"
+                [blockX]="x"
+                [blockY]="y"
+                [playerX]="currentGame.playerLocation.x"
+                [playerY]="currentGame.playerLocation.y"
+                [playerDir]="currentGame.playerDirection">
+            </app-map-block>
         </div>
     </div>
 </div>

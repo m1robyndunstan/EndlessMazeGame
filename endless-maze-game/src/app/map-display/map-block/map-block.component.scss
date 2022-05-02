@@ -1,12 +1,23 @@
-.map-display {
-    margin: 50px;
-}
 .block {
-    width: 10px;
-    height: 10px;
+    margin: 0;
+    padding: 0;
     display: inline-block;
+    height: 2rem;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .wall {
     background-color: black;
+}
+
+.special-exit {
+    font-weight: bold;
+    color: black;
+    background-color: red;
+}
+
+.player {
+    font-weight: bold;
+    color: red;
 }
