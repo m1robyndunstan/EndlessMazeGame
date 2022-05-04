@@ -62,6 +62,7 @@ Navigate a maze and solve puzzles to escape!
 - [Sky](https://unsplash.com/photos/rOAFxjnfRgg)
 - [Grass](https://unsplash.com/photos/Y90MI--vSuI)
 - [Pavement Stones](https://pixabay.com/photos/stone-pavement-road-gray-stone-3582751/)
+- [Map and Compass](https://openclipart.org/detail/179935/map-and-compass)
 - Most other graphics are taken from [Glitch](https://www.glitchthegame.com/)
 
 ## Change Log

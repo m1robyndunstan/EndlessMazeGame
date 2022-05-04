@@ -10,6 +10,7 @@ import { PathInterfaceModule } from './path-interface/path-interface.module';
 import { ExitInterfaceComponent } from './exit-interface/exit-interface.component';
 import { MazeEndComponent } from './maze-end/maze-end.component';
 import { MapDisplayModule } from './map-display/map-display.module';
+import { InterfaceTaskbarModule } from './interface-taskbar/interface-taskbar.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MapDisplayModule } from './map-display/map-display.module';
   imports: [
     BrowserModule,
     PathInterfaceModule,
-    MapDisplayModule
+    MapDisplayModule,
+    InterfaceTaskbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
