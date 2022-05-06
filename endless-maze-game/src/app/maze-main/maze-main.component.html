@@ -11,4 +11,5 @@
         [state]="currentGame.interface"
     ></app-taskbar>
     <app-map-display *ngIf="currentGame.interface.mapDisplayed" [currentGame]="currentGame"></app-map-display>
+    <app-inventory-display *ngIf="currentGame.interface.inventoryDisplayed"></app-inventory-display>
 </ng-container>

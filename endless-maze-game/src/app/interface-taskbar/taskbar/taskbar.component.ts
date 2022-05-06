@@ -24,6 +24,9 @@ export class TaskbarComponent implements OnInit {
             this.state.mapDisplayed = !this.state.mapDisplayed;
           }
           break;
+        case "inventory":
+          this.state.inventoryDisplayed = !this.state.inventoryDisplayed;
+          break;
         default:
           break;
       }

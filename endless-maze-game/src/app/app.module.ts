@@ -11,6 +11,7 @@ import { ExitInterfaceComponent } from './exit-interface/exit-interface.componen
 import { MazeEndComponent } from './maze-end/maze-end.component';
 import { MapDisplayModule } from './map-display/map-display.module';
 import { InterfaceTaskbarModule } from './interface-taskbar/interface-taskbar.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InterfaceTaskbarModule } from './interface-taskbar/interface-taskbar.mo
     BrowserModule,
     PathInterfaceModule,
     MapDisplayModule,
-    InterfaceTaskbarModule
+    InterfaceTaskbarModule,
+    InventoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

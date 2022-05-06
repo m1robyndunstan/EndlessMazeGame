@@ -11,5 +11,16 @@
                 (iconClicked)="doIconClick($event)">
             </app-taskbar-icon>
         </div>
+        <div class="col">
+            <app-taskbar-icon *ngIf="state"
+                [imgDisabled]="taskbarImage.InventoryOff"
+                [imgOff]="taskbarImage.InventoryOff"
+                [imgOn]="taskbarImage.InventoryOn"
+                [isEnabled]="true"
+                [isOn]="false"
+                [eventText]="'inventory'"
+                (iconClicked)="doIconClick($event)"
+            ></app-taskbar-icon>
+        </div>
     </div>
 </div>
