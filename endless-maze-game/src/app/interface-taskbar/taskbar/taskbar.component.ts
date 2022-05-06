@@ -16,6 +16,20 @@ export class TaskbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  doIconClick($event: string): void {
+    if (this.state) {
+      switch($event) {
+        case "map":
+          if (this.state.mapEnabled) {
+            this.state.mapDisplayed = !this.state.mapDisplayed;
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
   // needed to use the enum on the HTML
   public get taskbarImage(): typeof TaskbarImage {
     return TaskbarImage; 

@@ -1,1 +1,1 @@
-<img src="{{imgUrl}}" class="mx-auto d-block" />
+<img src="{{imgUrl}}" class="mx-auto d-block" [ngClass]="{'cursor-pointer': isEnabled}" (click)="doClick()" />

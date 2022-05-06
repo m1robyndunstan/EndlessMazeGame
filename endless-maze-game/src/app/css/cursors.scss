@@ -7,6 +7,7 @@ $cursor-store: url('../../assets/cur/store.cur');
 $cursor-use: url('../../assets/cur/use.cur');
 $cursor-in: url('../../assets/cur/zoom_in.cur');
 $cursor-out: url('../../assets/cur/zoom_out.cur');
+$cursor-examine: url('../../assets/cur/examine.cur');
 
 .cursor-default {
     cursor: $cursor-default, default;
@@ -42,4 +43,8 @@ $cursor-out: url('../../assets/cur/zoom_out.cur');
 
 .cursor-out {
     cursor: $cursor-out, zoom-out;
+}
+
+.cursor-examine {
+    cursor: $cursor-examine, pointer;
 }

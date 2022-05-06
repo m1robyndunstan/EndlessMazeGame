@@ -6,7 +6,9 @@
                 [imgOff]="taskbarImage.MapOff"
                 [imgOn]="taskbarImage.MapOn"
                 [isEnabled]="state.mapEnabled"
-                [isOn]="false">
+                [isOn]="state.mapDisplayed"
+                [eventText]="'map'"
+                (iconClicked)="doIconClick($event)">
             </app-taskbar-icon>
         </div>
     </div>

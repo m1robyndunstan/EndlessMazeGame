@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TaskbarImage } from '../taskbar-image';
 
 @Component({
@@ -15,6 +15,9 @@ export class TaskbarIconComponent implements OnInit {
   @Input() isEnabled?: boolean;
   @Input() isOn?: boolean;
 
+  @Input() eventText?: string;
+  @Output() iconClicked = new EventEmitter<string>();
+
   imgUrl?: TaskbarImage;
 
   constructor() {
@@ -22,6 +25,14 @@ export class TaskbarIconComponent implements OnInit {
    }
 
   ngOnInit(): void { 
+    this.setImage();
+  }
+
+  doClick(): void {
+    if (this.isEnabled) {
+      this.iconClicked.emit(this.eventText);
+      this.isOn = !this.isOn;
+    }
     this.setImage();
   }
 
