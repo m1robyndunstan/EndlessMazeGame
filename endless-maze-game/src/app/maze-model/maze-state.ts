@@ -1,3 +1,4 @@
+import { InterfaceState } from "../maze-main/interface-state";
 import { MazeScreen } from "../maze-main/maze-screen";
 import { FlavorText } from "./flavor-text";
 import { MazeBlock } from "./maze-block";
@@ -8,6 +9,8 @@ import { Point } from "./point";
 
 export class MazeState {
     currentScreen: MazeScreen;
+    interface: InterfaceState;
+
     map: MazeMap;
     playerLocation?: Point;
     playerDirection?: MazeDirection;
@@ -18,6 +21,7 @@ export class MazeState {
         // set maze dimensions
         this.map = new MazeMap(dimX, dimY);
         this.currentScreen = MazeScreen.Intro;
+        this.interface = new InterfaceState();
         this.flavorText = new FlavorText();
         this.doorLocked = true;
     }
@@ -34,6 +38,8 @@ export class MazeState {
         this.getCurrentBlock().specialDesc = MazeSpecial.Start;
         this.doorLocked = true;
         this.map.whereIsStuff();
+        this.interface.showTaskbar = true;
+        this.interface.mapEnabled = true;
     }
     newMaze(): void {
         this.map = new MazeMap(this.map.getDimensions()[0], this.map.getDimensions()[1]);

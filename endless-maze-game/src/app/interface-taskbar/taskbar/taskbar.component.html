@@ -1,11 +1,11 @@
-<div class="container-fluid">
+<div class="container-fluid my-2">
     <div class="row">
         <div class="col">
-            <app-taskbar-icon
+            <app-taskbar-icon *ngIf="state"
                 [imgDisabled]="taskbarImage.MapDisabled"
                 [imgOff]="taskbarImage.MapOff"
                 [imgOn]="taskbarImage.MapOn"
-                [isEnabled]="false"
+                [isEnabled]="state.mapEnabled"
                 [isOn]="false">
             </app-taskbar-icon>
         </div>

@@ -7,6 +7,8 @@
         [currentGame]="currentGame"></app-exit-interface>
     <app-maze-end *ngSwitchCase="MazeScreen.End"
         [currentGame]="currentGame"></app-maze-end>
-    <app-taskbar></app-taskbar>
-    <app-map-display [currentGame]="currentGame"></app-map-display>
+    <app-taskbar *ngIf="currentGame.interface.showTaskbar"
+        [state]="currentGame.interface"
+    ></app-taskbar>
+    <app-map-display *ngIf="currentGame.interface.mapDisplayed" [currentGame]="currentGame"></app-map-display>
 </ng-container>

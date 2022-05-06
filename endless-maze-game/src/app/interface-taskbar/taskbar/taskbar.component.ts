@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { InterfaceState } from 'src/app/maze-main/interface-state';
 import { TaskbarImage } from '../taskbar-image';
 
 @Component({
@@ -7,6 +8,8 @@ import { TaskbarImage } from '../taskbar-image';
   styleUrls: ['./taskbar.component.scss']
 })
 export class TaskbarComponent implements OnInit {
+
+  @Input() state?: InterfaceState;
 
   constructor() { }
 

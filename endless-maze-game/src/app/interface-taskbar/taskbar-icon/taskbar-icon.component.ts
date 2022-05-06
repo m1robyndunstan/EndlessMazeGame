@@ -21,7 +21,8 @@ export class TaskbarIconComponent implements OnInit {
     this.imgUrl = this.imgDisabled;
    }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.setImage();
   }
 
   private setImage() {
