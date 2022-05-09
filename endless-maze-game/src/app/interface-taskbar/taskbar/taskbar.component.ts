@@ -22,10 +22,12 @@ export class TaskbarComponent implements OnInit {
         case "map":
           if (this.state.mapEnabled) {
             this.state.mapDisplayed = !this.state.mapDisplayed;
+            this.state.inventoryDisplayed = false;
           }
           break;
         case "inventory":
           this.state.inventoryDisplayed = !this.state.inventoryDisplayed;
+          this.state.mapDisplayed = false;
           break;
         default:
           break;

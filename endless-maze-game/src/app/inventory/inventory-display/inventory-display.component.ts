@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { InventoryItems } from '../inventory-items';
 
 @Component({
   selector: 'app-inventory-display',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryDisplayComponent implements OnInit {
 
-  constructor() { }
+  @Input() inventory?: InventoryItems[];
+
+  canScrollBack: boolean;
+  canScrollForward: boolean;
+  startingIndex: number;
+
+  constructor() {
+    this.canScrollBack = false;
+    this.canScrollForward = false;
+    this.startingIndex = 0;
+  }
 
   ngOnInit(): void {
   }

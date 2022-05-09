@@ -17,7 +17,7 @@
                 [imgOff]="taskbarImage.InventoryOff"
                 [imgOn]="taskbarImage.InventoryOn"
                 [isEnabled]="true"
-                [isOn]="false"
+                [isOn]="state.inventoryDisplayed"
                 [eventText]="'inventory'"
                 (iconClicked)="doIconClick($event)"
             ></app-taskbar-icon>

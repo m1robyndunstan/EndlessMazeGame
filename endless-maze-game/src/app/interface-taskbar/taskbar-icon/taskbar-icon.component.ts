@@ -28,10 +28,13 @@ export class TaskbarIconComponent implements OnInit {
     this.setImage();
   }
 
+  ngOnChanges(changes: SimpleChanges[]) {
+    this.setImage();
+  }
+
   doClick(): void {
     if (this.isEnabled) {
       this.iconClicked.emit(this.eventText);
-      this.isOn = !this.isOn;
     }
     this.setImage();
   }

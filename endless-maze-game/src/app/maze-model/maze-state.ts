@@ -1,3 +1,4 @@
+import { InventoryItems } from "../inventory/inventory-items";
 import { InterfaceState } from "../maze-main/interface-state";
 import { MazeScreen } from "../maze-main/maze-screen";
 import { FlavorText } from "./flavor-text";
@@ -16,6 +17,7 @@ export class MazeState {
     playerDirection?: MazeDirection;
     flavorText: FlavorText;
     doorLocked: boolean;
+    inventory: InventoryItems[];
 
     constructor(dimX?: number, dimY?:number) {
         // set maze dimensions
@@ -24,6 +26,7 @@ export class MazeState {
         this.interface = new InterfaceState();
         this.flavorText = new FlavorText();
         this.doorLocked = true;
+        this.inventory = [];
     }
 
     startMaze(): void {

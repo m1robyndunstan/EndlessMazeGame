@@ -1,1 +1,29 @@
-<p>inventory-display works!</p>
+<div class="container">
+    <div class="row">
+        <div class="inventory-scroll col d-grid">
+            <button type="button" class="btn btn-primary btn-lg" [ngClass]="{'cursor-pointer': canScrollBack, 'cursor-no disabled': !canScrollBack}">
+                <i class="fas fa-caret-left"></i>
+            </button>
+        </div>
+        <div class="col">
+            <app-inventory-item></app-inventory-item>
+        </div>
+        <div class="col">
+            <app-inventory-item></app-inventory-item>
+        </div>
+        <div class="col">
+            <app-inventory-item></app-inventory-item>
+        </div>
+        <div class="col">
+            <app-inventory-item></app-inventory-item>
+        </div>
+        <div class="col">
+            <app-inventory-item></app-inventory-item>
+        </div>
+        <div class="inventory-scroll col d-grid">
+            <button type="button" class="btn btn-primary btn-lg" [ngClass]="{'cursor-pointer': canScrollForward, 'cursor-no disabled': !canScrollForward}">
+                <i class="fas fa-caret-right"></i>
+            </button>
+        </div>
+    </div>
+</div>

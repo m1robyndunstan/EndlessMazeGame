@@ -12,39 +12,37 @@ $cursor-examine: url('../../assets/cur/examine.cur');
 .cursor-default {
     cursor: $cursor-default, default;
 }
-
 .cursor-back {
     cursor: $cursor-back, s-resize;
 }
-
 .cursor-forward {
     cursor: $cursor-forward, n-resize;
 }
-
 .cursor-left {
     cursor: $cursor-left, w-resize;
 }
-
 .cursor-right {
     cursor: $cursor-right, e-resize;
 }
-
 .cursor-store {
     cursor: $cursor-store, grab;
 }
-
 .cursor-use {
     cursor: $cursor-use, pointer;
 }
-
 .cursor-in {
     cursor: $cursor-in, zoom-in;
 }
-
 .cursor-out {
     cursor: $cursor-out, zoom-out;
 }
-
 .cursor-examine {
     cursor: $cursor-examine, pointer;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+.cursor-no {
+    cursor: not-allowed;
 }
