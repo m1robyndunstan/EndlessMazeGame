@@ -1,5 +1,8 @@
 # Endless Maze Game
+
 Navigate a maze and solve puzzles to escape! 
+
+[Play here](https://m1robyndunstan.github.io/EndlessMazeGame/)
 
 ## Setup
 
@@ -44,6 +47,7 @@ Navigate a maze and solve puzzles to escape!
 1. Go to folder `<git repository directory>/endless-maze-game/dist/endless-maze-game`. Rename the folder to `endless-maze-game-#.#` where `#.#` is the version number.
 1. Zip the contents of the folder into an archive (ex: `endless-maze-game-#.#.zip`).
 1. Copy the archive to folder `<git repository directory>/dist`.
+1. To deploy to GitHub Pages the contents of `<git repository directory>/endless-maze-game/dist/endless-maze-game` to `<git repository directory>/docs`.
 
 ## Technologies
 
